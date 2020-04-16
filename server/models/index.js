@@ -9,7 +9,7 @@ module.exports = {
       //return this data to controllers
 
       //Declare a query - regular mysql syntax for getting the relevant colummns from the messages table
-      let query = 'select messages.messageText, messages.user, messages.room from messages';
+      let query = 'select * from messages';
       //db.query - use the query we described, pass in the node-style err / success callback
       db.query(query, (err, messages) => {
         //on err, we should invoke the callback on the err

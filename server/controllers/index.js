@@ -23,6 +23,7 @@ module.exports = {
     post: function (req, res) {
       // console.log(req.body);
       // res.end();
+      console.log(req.body);
       models.messages.post(req.body, (err, success) => {
         if (err) {
           console.log(err);

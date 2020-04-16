@@ -4,11 +4,11 @@ var Messages = {
   _data: {},
 
   items: function() {
-    return _.chain(Object.values(Messages._data)).sortBy('createdAt');
+    return _.chain(Object.values(Messages._data)).sortBy('created_at');
   },
 
   add: function(message, callback = ()=>{}) {
-    Messages._data[message.objectId] = message;
+    Messages._data[message.messageId] = message;
     callback(Messages.items());
   },
 
@@ -16,21 +16,22 @@ var Messages = {
     var length = Object.keys(Messages._data).length;
 
     for (let message of messages) {
-      Messages._data[message.objectId] = Messages._conform(message);
+      Messages._data[message.messageId] = Messages._conform(message);
     }
 
     // only invoke the callback if something changed
     if (Object.keys(Messages._data).length !== length) {
       callback(Messages.items());
     }
+
   },
 
   _conform: function(message) {
     // ensure each message object conforms to expected shape
-    message.text = message.text || '';
-    message.username = message.username || '';
-    message.roomname = message.roomname || '';
+    message.messageText = message.messageText || '';
+    message.user = message.user || '';
+    message.room = message.room || '';
     return message;
   }
-  
+
 };

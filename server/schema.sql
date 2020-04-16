@@ -21,7 +21,7 @@ CREATE  TABLE users (
 
 
 /*  Execute this file from the command line by typing:
- *    mysql -u root < server/schema.sql
+ *    :
  *  to create the database and the tables.*/
 
 -- 1) Lookup in the user table, for the user that is present in the user property of message, and obtain the key
