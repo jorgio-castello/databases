@@ -43,7 +43,17 @@ module.exports = {
     // Ditto as above
     get: function (req, res) {},
     //To filter the messages in the database and return messages that were created by a particular user
-    post: function (req, res) {}
+    post: function (req, res) {
+      models.users.post(req.body, (err, success) => {
+        if (err) {
+          console.log(err);
+          res.end();
+        } else {
+          console.log('successfully added user');
+          res.end();
+        }
+      });
+    }
     // this will be used to create a user, we will call model func for insertion into the database
   }
 };

@@ -24,7 +24,7 @@ module.exports = {
 
 
     post: function ({ messageText, user, room }, callback) {
-      let query = `insert into messages(messageText, user, room) values('${messageText}', '${user}', '${room}');`;
+      let query = `insert into messages(messageText, user, room) values("${messageText}", "${user}", "${room}");`;
       //query = insert the message into our database -
       db.query(query, (err, success) => {
         if (err) {
@@ -41,7 +41,17 @@ module.exports = {
   users: {
     // Ditto as above.
     get: function () {},
-    post: function () {}
+    post: function ({userName}, callback) {
+      let query = `insert into users(userName) values("${userName}");`;
+
+      db.query(query, (err, success) => {
+        if (err) {
+          callback(err);
+        } else {
+          callback(null, success);
+        }
+      });
+    }
   }
 };
 
