@@ -11,12 +11,10 @@ module.exports = {
       models.messages.get((err, messages) => {
         if (err) {
           //error handling logic - responding with a 404, we can probably console.log something for us to see
-          console.log(err);
-          res.end('error code');
+          res.end(err);
         } else {
           //successHandling logic - respond with a 200, we should be sending back the data in the format the client expects
-          console.log(messages);
-          res.end('working correctly');
+          res.end(JSON.stringify(messages));
         }
       });
       //});

@@ -23,8 +23,16 @@ module.exports = {
     },
 
 
-    post: function (message, callback) {
+    post: function ({ messageText, user, room }, callback) {
+      let query = `insert into messages(messageText, user, room) values('${messageText}', '${user}', '${room}');`;
       //query = insert the message into our database -
+      db.query(query, (err, success) => {
+        if (err) {
+          callback(err);
+        } else {
+          callback(null, success);
+        }
+      });
       //db func - callback on the error or callback on success
     } // a function which can be used to insert a message into the database
     //insert into database and return an error / success
